@@ -7,5 +7,5 @@
 </p>
 
 <p>
-"This is the exercise I built for the exam Rank 3. This code creates a program that replicates the behavior of Bash by executing commands and pipes through execve, and also supports one Bash builtin, cd, using the <b>chdir( )</b> function.
+This is the code that I built for the exam Rank 3. This code creates a program that replicates the behavior of Bash by executing commands and pipes through execve, and also supports one Bash builtin, cd, using the <b>chdir( )</b> function.
 </p>
