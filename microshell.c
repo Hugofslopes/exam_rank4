@@ -24,9 +24,10 @@ int	cd(char **av, size_t i)
 	if (i != 2)
 		return (BADCD, 1);
 	if (chdir(av[1]) == -1)
-		return (CDFAIL, put_str(av[1]), 1);
+		return (CDFAIL, put_str(av[1]), write(2,"\n",1), 1);
 	return (0);
 }
+
 void ft_pipe(int has_pipe, int *fd, int end) {
 	if (has_pipe &&
 		(dup2(fd[end], end) == -1 || close(fd[0]) == -1 || close(fd[1]) == -1))
@@ -35,9 +36,8 @@ void ft_pipe(int has_pipe, int *fd, int end) {
 
 int execute(char **av, char **envp, size_t i) 
 {
-	int has_pipe = !strcmp(av[i], "|") ? 0 : i;
+	int has_pipe = (av[i] && !strcmp(av[i], "|"));
 	int fd[2], status, pid;
-
 	if (!has_pipe && !strcmp(*av, "cd"))
 		return (cd(av, i));
 	if (has_pipe && pipe(fd) == -1)
@@ -56,11 +56,12 @@ int execute(char **av, char **envp, size_t i)
 	return (WIFEXITED(status) && WEXITSTATUS(status));
 }
 
-int main(int argc, char **av, char **envp) {
-	int status;
+int main(int ac, char **av, char **envp)
+{
+	int status = 0;
     size_t i = 0;
 
-	if (argc == 1)
+	if (ac == 1)
         return (1);
 	while (av[i]) 
     {
@@ -68,6 +69,7 @@ int main(int argc, char **av, char **envp) {
 		i = 0;
 		while (av[i] && strcmp(av[i], ";") && strcmp(av[i], "|"))
 			i++;
+		if (i)
 		status = execute(av, envp, i);
 	}
 	return (status);
