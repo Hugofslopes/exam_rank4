@@ -60,9 +60,7 @@ int main(int ac, char **av, char **envp)
 {
 	int status = 0;
     size_t i = 0;
-
-	if (ac == 1)
-        return (1);
+	
 	while (av[i]) 
     {
 		av += (i + 1);

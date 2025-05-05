@@ -1,0 +1,27 @@
+MAIN
+initiaize status has 0
+
+while loop 
+av += i + 1
+outro loop inside que enquanto nao for pipe ou ; ele anvaca
+
+se I
+    chama o execute
+
+EXECUTE 
+int se tem pipe  = av[i] & !strcomp de pipe
+int o fd (como array) , status e o pid
+se nao tiver pipes e tiver cd chama o CD!!
+se tiver pipe && chama a funcao pipe 
+pid = fork (apanhar erro)
+se filho 
+    av[i] = 0;
+    funcao dos pipes com fd 1
+    chama execve e verifica o error
+waitpid (pid, status, 0)
+chama o pipe com fd 0
+
+retorna o wifeexeitde && wifestatus
+
+
+funcao dos pipes () vai fazer dup do fd na posicao que recebe, posicao que recece  ou para close dos fds 
